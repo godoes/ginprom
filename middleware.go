@@ -94,6 +94,7 @@ func calcRequestSize(r *http.Request) float64 {
 	return float64(size)
 }
 
+// RequestLabelMappingFn request label mapping function returns c.Request.URL.Path by default.
 type RequestLabelMappingFn func(c *gin.Context) string
 
 // PromOpts represents the Prometheus middleware Options.

@@ -50,6 +50,16 @@ func main() {
 }
 ```
 
+### Static check
+
+```shell
+go run honnef.co/go/tools/cmd/staticcheck@latest -f stylish ./...
+```
+
+```shell
+go run github.com/mgechev/revive@latest -exclude ./vendor/... -formatter stylish ./...
+```
+
 ### 🎉 Metrics
 
 Details about exposed Prometheus metrics.
