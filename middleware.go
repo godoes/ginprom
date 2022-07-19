@@ -3,7 +3,9 @@ package ginprom
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"regexp"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -12,6 +14,14 @@ import (
 
 const namespace = "service"
 
+// UseChineseHelpInfo control whether to use chinese help information.
+var UseChineseHelpInfo = func() (yes bool) {
+	if val, ok := os.LookupEnv("GINPROM_USE_CHINESE_HELP_INFO"); ok {
+		yes, _ = strconv.ParseBool(val)
+	}
+	return
+}()
+
 var (
 	labels = []string{"status", "endpoint", "method"}
 
@@ -19,7 +29,7 @@ var (
 		prometheus.CounterOpts{
 			Namespace: namespace,
 			Name:      "uptime",
-			Help:      "HTTP service uptime.",
+			Help:      helpInfo("HTTP 服务正常运行时间。", "HTTP service uptime."),
 		}, nil,
 	)
 
@@ -27,7 +37,7 @@ var (
 		prometheus.CounterOpts{
 			Namespace: namespace,
 			Name:      "http_request_count_total",
-			Help:      "Total number of HTTP requests made.",
+			Help:      helpInfo("发出的 HTTP 请求总数。", "Total number of HTTP requests made."),
 		}, labels,
 	)
 
@@ -35,7 +45,7 @@ var (
 		prometheus.HistogramOpts{
 			Namespace: namespace,
 			Name:      "http_request_duration_seconds",
-			Help:      "HTTP request latencies in seconds.",
+			Help:      helpInfo("HTTP 请求延迟（以秒为单位）。", "HTTP request latencies in seconds."),
 		}, labels,
 	)
 
@@ -43,7 +53,7 @@ var (
 		prometheus.SummaryOpts{
 			Namespace: namespace,
 			Name:      "http_request_size_bytes",
-			Help:      "HTTP request sizes in bytes.",
+			Help:      helpInfo("HTTP 请求大小（以字节为单位）。", "HTTP request sizes in bytes."),
 		}, labels,
 	)
 
@@ -51,10 +61,18 @@ var (
 		prometheus.SummaryOpts{
 			Namespace: namespace,
 			Name:      "http_response_size_bytes",
-			Help:      "HTTP response sizes in bytes.",
+			Help:      helpInfo("HTTP 响应大小（以字节为单位）。", "HTTP response sizes in bytes."),
 		}, labels,
 	)
 )
+
+// helpInfo returns the summary information in Chinese or English.
+func helpInfo(zh, en string) string {
+	if UseChineseHelpInfo {
+		return zh
+	}
+	return en
+}
 
 // init registers the prometheus metrics
 func init() {
