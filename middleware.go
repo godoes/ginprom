@@ -1,7 +1,6 @@
 package ginprom
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"regexp"
@@ -166,7 +165,7 @@ func PromMiddleware(promOpts *PromOpts) gin.HandlerFunc {
 		start := time.Now()
 		c.Next()
 
-		status := fmt.Sprintf("%d", c.Writer.Status())
+		status := strconv.Itoa(c.Writer.Status())
 		endpoint := promOpts.EndpointLabelMappingFn(c)
 		method := c.Request.Method
 
