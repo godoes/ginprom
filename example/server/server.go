@@ -11,10 +11,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-func init() {
-	rand.Seed(time.Now().Unix())
-}
-
 func zzZ() {
 	time.Sleep(time.Millisecond * time.Duration(rand.Int()%1000))
 }
