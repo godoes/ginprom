@@ -6,7 +6,10 @@ rem by iTanken
 
 cd /d %~dp0/../../
 echo 1. 更新三方依赖...
-cd & go get -d -u & echo.
+cd
+::& go get -d -u & echo.
+go get -u github.com/gin-gonic/gin
+go get -u github.com/prometheus/client_golang
 
 echo 2. 整理模块依赖...
 go mod tidy & echo.
