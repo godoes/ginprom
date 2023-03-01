@@ -40,6 +40,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-retract (
-    v0.1.5 // go.mod error
-)
+retract v0.1.5 // go.mod error
