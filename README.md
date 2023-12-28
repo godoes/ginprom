@@ -5,8 +5,11 @@
 
 ### 🔰 Installation
 
+> [!Note]
+> Required go 1.19
+
 ```shell
-go get -u github.com/godoes/ginprom
+go get github.com/godoes/ginprom
 ```
 
 ### 📝 Usage
@@ -53,11 +56,11 @@ func main() {
 ### Static check
 
 ```shell
-go run honnef.co/go/tools/cmd/staticcheck@latest -f stylish ./...
+go run github.com/golangci/golangci-lint/cmd/golangci-lint@latest run
 ```
 
 ```shell
-go run github.com/mgechev/revive@latest -exclude ./vendor/... -formatter stylish ./...
+go run honnef.co/go/tools/cmd/staticcheck@latest -f stylish ./...
 ```
 
 ### 🎉 Metrics
