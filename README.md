@@ -6,7 +6,7 @@
 ### 🔰 Installation
 
 > [!Note]
-> Required go 1.19
+> Required go 1.20
 
 ```shell
 go get github.com/godoes/ginprom
@@ -83,4 +83,7 @@ Although Prometheus offers a simple dashboard, Grafana is clearly a better choic
 
 ### 📃 LICENSE
 
-MIT [©chenjiandongx](https://github.com/chenjiandongx)
+[MIT license](./LICENSE)
+
+- Copyright (c) 2022-present [iTanken](https://github.com/iTanken)
+- Copyright (c) 2019-2021 [chenjiandongx](https://github.com/chenjiandongx)
