@@ -3,7 +3,7 @@ module github.com/godoes/ginprom
 go 1.20
 
 require (
-	github.com/gin-gonic/gin v1.10.0
+	github.com/gin-gonic/gin v1.10.1
 	github.com/prometheus/client_golang v1.20.5
 )
 
